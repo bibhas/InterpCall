@@ -1,0 +1,46 @@
+#pragma once
+
+#include "common.h"
+#include "object.h"
+
+/*
+ * TODO : ??
+ */
+#define ALLOCATE(type, count) \
+    (type*)reallocate(NULL, 0, sizeof(type) * (count))
+
+
+/*
+ * TODO : ??
+ */
+#define FREE(type, pointer) reallocate(pointer, sizeof(type), 0)
+
+/*
+ * TODO : ??
+ */
+#define GROW_CAPACITY(capacity) \
+    ((capacity) < 8 ? 8 : (capacity) * 2)
+
+/*
+ * TODO : ??
+ */
+#define GROW_ARRAY(type, pointer, oldCount, newCount) \
+    (type*)reallocate(pointer, sizeof(type) * (oldCount), \
+        sizeof(type) * (newCount))
+
+/*
+ * TODO : ??
+ */
+#define FREE_ARRAY(type, pointer, oldCount) \
+    reallocate(pointer, sizeof(type) * (oldCount), 0)
+
+/*
+ * TODO : ??
+ */
+void* reallocate(void* pointer, size_t oldSize, size_t newSize);
+
+/*
+ * TODO : ??
+ */
+void freeObjects();
+
